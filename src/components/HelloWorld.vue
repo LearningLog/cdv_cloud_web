@@ -3,7 +3,7 @@
     <h1>{{ msg }}</h1>
     <qriously :value="value" :size="size" :backgroundAlpha="backgroundAlpha"/>
     <el-button @click='handleCopy(inputData,$event)'>copy1</el-button>
-    <el-button v-clipboard:copy='inputData' v-clipboard:success='clipboardSuccess'>copy</el-button>
+    <el-button v-clipboard:copy='inputData' v-clipboard:success='clipboardSuccess'>copy2</el-button>
     <div>{{token}}</div>
     <button @click="add()">addCookie</button>
     <button @click="get()">getCookie</button>
@@ -40,7 +40,7 @@ export default {
     },
     clipboardSuccess () {
       this.$message({
-        message: '复制成功',
+        message: '复制成功2',
         type: 'success',
         duration: 1500
       })
