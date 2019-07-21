@@ -1,94 +1,44 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li>
-        <a
-          href="https://vuejs.org"
-          target="_blank"
-        >
-          Core Docs
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://forum.vuejs.org"
-          target="_blank"
-        >
-          Forum
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://chat.vuejs.org"
-          target="_blank"
-        >
-          Community Chat
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://twitter.com/vuejs"
-          target="_blank"
-        >
-          Twitter
-        </a>
-      </li>
-      <br>
-      <li>
-        <a
-          href="http://vuejs-templates.github.io/webpack/"
-          target="_blank"
-        >
-          Docs for This Template
-        </a>
-      </li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li>
-        <a
-          href="http://router.vuejs.org/"
-          target="_blank"
-        >
-          vue-router
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vuex.vuejs.org/"
-          target="_blank"
-        >
-          vuex
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vue-loader.vuejs.org/"
-          target="_blank"
-        >
-          vue-loader
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-        >
-          awesome-vue
-        </a>
-      </li>
-    </ul>
+    <qriously :value="value" :size="size" :backgroundAlpha="backgroundAlpha"/>
+    <div>{{token}}</div>
+    <button @click="add()">addCookie</button>
+    <button @click="get()">getCookie</button>
+    <button @click="del()">delCookie</button>
   </div>
 </template>
 
 <script>
+import Cookies from 'js-cookie'
 export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      token: null,
+      // 可以自定义，必填项。
+      value: 'http://lxchuan12.github.io/',
+      // 二维码大小 默认 100
+      size: 80,
+      // 背景透明度，默认透明 0
+      backgroundAlpha: 1
+    }
+  },
+  methods: {
+    add () {
+      // a
+      this.token = Cookies.set('token', '1111', {expires: 1})
+      const a = 1
+      console.log(a)
+    },
+    del () {
+      // a
+      this.token = Cookies.remove('token')
+    },
+    get () {
+      // a
+      this.token = Cookies.get('token')
     }
   }
 }
