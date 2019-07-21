@@ -2,12 +2,15 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <qriously :value="value" :size="size" :backgroundAlpha="backgroundAlpha"/>
-    <el-button @click='handleCopy(inputData,$event)'>copy1</el-button>
-    <el-button v-clipboard:copy='inputData' v-clipboard:success='clipboardSuccess'>copy2</el-button>
+    <el-button type="success" plain @click='handleCopy(inputData,$event)'>copy1</el-button>
+    <el-button type="success" plain v-clipboard:copy='inputData' v-clipboard:success='clipboardSuccess'>copy2</el-button>
+    <br><br>
     <div>{{token}}</div>
-    <button @click="add()">addCookie</button>
-    <button @click="get()">getCookie</button>
-    <button @click="del()">delCookie</button>
+    <el-button type="primary" plain @click="add()">addCookie</el-button>
+    <el-button type="primary" plain @click="get()">getCookie</el-button>
+    <el-button type="primary" plain @click="del()">delCookie</el-button>
+    <el-button type="primary" plain @click="live()">to live</el-button>
+    <el-button type="primary" plain @click="playback()">to playback</el-button>
     <br><br>
   <!--引入组件-->
   <tinymce class="tinymce" :height="300" :width="900" v-model="content"></tinymce>
@@ -66,6 +69,12 @@ export default {
     get () {
       // a
       this.token = this.$Cookies.get('token')
+    },
+    live () {
+      this.$router.push({path: '/live'})
+    },
+    playback () {
+      this.$router.push({path: '/playback'})
     }
   }
 }
