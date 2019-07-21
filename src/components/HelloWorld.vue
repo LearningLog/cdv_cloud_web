@@ -8,6 +8,11 @@
     <button @click="add()">addCookie</button>
     <button @click="get()">getCookie</button>
     <button @click="del()">delCookie</button>
+    <br><br>
+  <!--引入组件-->
+  <tinymce class="tinymce" :height="300" :width="900" v-model="content"></tinymce>
+  <!--显示输入的文字-->
+  <div class="editor-content" v-html="content"></div>
   </div>
 </template>
 
@@ -16,7 +21,9 @@
 import clip from '@/utils/clipboard'
 // 指令形式使用
 import clipboard from '@/directive/clipboard/index.js'
+import Tinymce from '@/components/Tinymce'
 export default {
+  components: { Tinymce },
   directives: {
     clipboard
   },
@@ -31,7 +38,8 @@ export default {
       size: 80,
       // 背景透明度，默认透明 0
       backgroundAlpha: 1,
-      inputData: 'copy123456'
+      inputData: 'copy123456',
+      content: ''
     }
   },
   methods: {
@@ -65,18 +73,21 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+  h1, h2 {
+    font-weight: normal;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  li {
+    display: inline-block;
+    margin: 0 10px;
+  }
+  a {
+    color: #42b983;
+  }
+  .tinymce {
+    margin-left: 100px;
+  }
 </style>

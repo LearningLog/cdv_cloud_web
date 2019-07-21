@@ -17,6 +17,7 @@ Vue.config.productionTip = false
 
 Vue.use(ElementUI, { size: Cookies.get('size') || 'small' }, { locale })
 Vue.use(VueQriously)
+Vue.prototype.$Cookies = Cookies
 
 /* eslint-disable no-new */
 new Vue({
