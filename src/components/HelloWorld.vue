@@ -2,6 +2,8 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <qriously :value="value" :size="size" :backgroundAlpha="backgroundAlpha"/>
+    <el-button @click='handleCopy(inputData,$event)'>copy1</el-button>
+    <el-button v-clipboard:copy='inputData' v-clipboard:success='clipboardSuccess'>copy</el-button>
     <div>{{token}}</div>
     <button @click="add()">addCookie</button>
     <button @click="get()">getCookie</button>
@@ -10,8 +12,14 @@
 </template>
 
 <script>
-import Cookies from 'js-cookie'
+// 直接使用
+import clip from '@/utils/clipboard'
+// 指令形式使用
+import clipboard from '@/directive/clipboard/index.js'
 export default {
+  directives: {
+    clipboard
+  },
   name: 'HelloWorld',
   data () {
     return {
@@ -22,23 +30,34 @@ export default {
       // 二维码大小 默认 100
       size: 80,
       // 背景透明度，默认透明 0
-      backgroundAlpha: 1
+      backgroundAlpha: 1,
+      inputData: 'copy123456'
     }
   },
   methods: {
+    handleCopy (text, event) {
+      clip(text, event)
+    },
+    clipboardSuccess () {
+      this.$message({
+        message: '复制成功',
+        type: 'success',
+        duration: 1500
+      })
+    },
     add () {
       // a
-      this.token = Cookies.set('token', '1111', {expires: 1})
+      this.token = this.$Cookies.set('token', '1111', {expires: 1})
       const a = 1
       console.log(a)
     },
     del () {
       // a
-      this.token = Cookies.remove('token')
+      this.token = this.$Cookies.remove('token')
     },
     get () {
       // a
-      this.token = Cookies.get('token')
+      this.token = this.$Cookies.get('token')
     }
   }
 }
