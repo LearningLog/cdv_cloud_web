@@ -11,6 +11,7 @@
     <el-button type="primary" plain @click="del()">delCookie</el-button>
     <el-button type="primary" plain @click="live()">to live</el-button>
     <el-button type="primary" plain @click="playback()">to playback</el-button>
+    <el-button type="primary" plain @click="vueCropper()">to vueCropper</el-button>
     <br><br>
   <!--引入组件-->
   <tinymce class="tinymce" :height="300" :width="900" v-model="content"></tinymce>
@@ -75,6 +76,9 @@ export default {
     },
     playback () {
       this.$router.push({path: '/playback'})
+    },
+    vueCropper () {
+      this.$router.push({path: '/vueCropper'})
     }
   }
 }
